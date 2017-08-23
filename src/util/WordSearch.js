@@ -1,12 +1,5 @@
 import wordList from 'word-list-json';
-
-let sortAndBreakString = ( string ) => {
-	let filteredString = string.replace( /[^A-Z]/gi, '' );
-	let letters = filteredString.toUpperCase().split( '' );
-	letters.sort();
-
-	return letters;
-};
+import Promise from 'bluebird';
 
 let disassembleString = ( string ) => {
 	let filteredString = string.replace( /[^A-Z]/gi, '' ).toUpperCase();
@@ -20,13 +13,10 @@ let disassembleString = ( string ) => {
 	return components;
 };
 
-let preprocess = () => {
-	return new Promise( ( resolve, reject ) => {
-		let processed = wordList.map( ( word ) => ([ word, disassembleString( word ) ]) );
-		resolve( processed );
-	} )
-};
-let preprocessPromise = preprocess();
+let preprocessPromise = new Promise( ( resolve, reject ) => {
+	let processed = wordList.map( ( word ) => ([ word, disassembleString( word ) ]) );
+	resolve( processed );
+} );
 
 export default ( needle = '' ) => {
 	return new Promise( ( resolve, reject ) => {
@@ -35,11 +25,10 @@ export default ( needle = '' ) => {
 
 			let matches = preprocessedWordList.filter( ( haystackItem ) => {
 				return Object.keys( haystackItem[ 1 ] ).every( ( letter ) => {
-					if ( !disassembledNeedle[ letter ] || disassembledNeedle[ letter ] < haystackItem[ 1 ][ letter ] ) {
+					if ( !disassembledNeedle[ letter ] ) {
 						return false;
-					} else {
-						return true;
 					}
+					return disassembledNeedle[ letter ] >= haystackItem[ 1 ][ letter ];
 				} )
 			} );
 
@@ -48,4 +37,4 @@ export default ( needle = '' ) => {
 			resolve( matchedWords );
 		} );
 	} );
-}
+};

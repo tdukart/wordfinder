@@ -3,9 +3,9 @@ import { FormGroup, ControlLabel, FormControl, Button, Navbar, Nav, NavItem } fr
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
 
-import 'bootswatch/yeti/bootstrap.css';
-
 import wordSearch from './util/WordSearch';
+
+import 'bootswatch/yeti/bootstrap.css';
 
 class App extends React.Component {
 	constructor( props ) {
@@ -19,12 +19,18 @@ class App extends React.Component {
 
 	componentWillUpdate( nextProps, nextState ) {
 		if ( nextState.scramble !== this.state.scramble ) {
-			wordSearch( nextState.scramble ).then( ( matches ) => {
-				this.setState( {
-					matches: matches,
-				} );
-			} );
+			this.doSearch( nextState.scramble )
 		}
+	}
+
+	doSearch( scramble ) {
+		let search = wordSearch( scramble );
+		console.log( search );
+		search.then( ( matches ) => {
+			this.setState( {
+				matches: matches,
+			} );
+		} );
 	}
 
 	render() {
