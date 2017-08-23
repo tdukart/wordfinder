@@ -1,0 +1,82 @@
+import React from 'react';
+import { FormGroup, ControlLabel, FormControl, Button, Navbar, Nav, NavItem } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Link } from 'react-router-dom';
+
+import 'bootswatch/yeti/bootstrap.css';
+
+import wordSearch from './util/WordSearch';
+
+class App extends React.Component {
+	constructor( props ) {
+		super( props );
+
+		this.state = {
+			scramble: '',
+			matches: [],
+		};
+	}
+
+	componentWillUpdate( nextProps, nextState ) {
+		if ( nextState.scramble !== this.state.scramble ) {
+			wordSearch( nextState.scramble ).then( ( matches ) => {
+				this.setState( {
+					matches: matches,
+				} );
+			} );
+		}
+	}
+
+	render() {
+		let matchListItems = this.state.matches.map( ( match ) => (
+			<li key={match}>{match}</li>) );
+
+		let handleSearch = () => {
+			this.setState( { scramble: this.searchInput.value } );
+		};
+
+		return (
+			<div className="container home">
+				<Navbar>
+					<Navbar.Header>
+						<Navbar.Brand>
+							{/*<Link to="/">Word Finder</Link>*/}
+							WordFinder
+						</Navbar.Brand>
+						<Navbar.Toggle/>
+					</Navbar.Header>
+					<Navbar.Collapse>
+						<Nav>
+							{/*<LinkContainer exact to="/">*/}
+							{/*<NavItem eventKey={1}>*/}
+							{/*Home*/}
+							{/*</NavItem>*/}
+							{/*</LinkContainer>*/}
+						</Nav>
+					</Navbar.Collapse>
+				</Navbar>
+				<form>
+					<FormGroup>
+						<ControlLabel>
+							Scramble
+						</ControlLabel>
+						<FormControl inputRef={ref => {
+							this.searchInput = ref;
+						}}/>
+					</FormGroup>
+
+					<Button onClick={handleSearch}>
+						Search
+					</Button>
+				</form>
+				<div className="matches">
+					<ul>
+						{matchListItems}
+					</ul>
+				</div>
+			</div>
+		);
+	}
+}
+
+export default App;
