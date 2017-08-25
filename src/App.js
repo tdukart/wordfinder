@@ -2,6 +2,7 @@ import React from 'react';
 import { FormGroup, ControlLabel, FormControl, Button, Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
+import SearchForm from './components/SearchForm';
 
 import wordSearch from './util/WordSearch';
 
@@ -37,8 +38,8 @@ class App extends React.Component {
 		let matchListItems = this.state.matches.map( ( match ) => (
 			<li key={match}>{match}</li>) );
 
-		let handleSearch = () => {
-			this.setState( { scramble: this.searchInput.value } );
+		let handleSearch = ( scramble ) => {
+			this.setState( { scramble } );
 		};
 
 		return (
@@ -61,20 +62,10 @@ class App extends React.Component {
 						</Nav>
 					</Navbar.Collapse>
 				</Navbar>
-				<form>
-					<FormGroup>
-						<ControlLabel>
-							Scramble
-						</ControlLabel>
-						<FormControl inputRef={ref => {
-							this.searchInput = ref;
-						}}/>
-					</FormGroup>
-
-					<Button onClick={handleSearch}>
-						Search
-					</Button>
-				</form>
+				<SearchForm
+					scramble={this.state.scramble}
+					onSubmit={handleSearch}
+				/>
 				<div className="matches">
 					<ul>
 						{matchListItems}
