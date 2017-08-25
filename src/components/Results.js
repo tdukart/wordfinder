@@ -7,8 +7,15 @@ export default class Results extends React.Component {
 	static get propTypes() {
 		return {
 			matches: PropTypes.array.isRequired,
+			lengths: PropTypes.array.isRequired,
 		};
 	}
+
+	// componentWillReceiveProps( newProps ) {
+	// 	if ( newProps.lengths !== this.props.lengths ) {
+	// 		this.forceUpdate();
+	// 	}
+	// }
 
 	render() {
 		let matchesByLength = {};
@@ -18,6 +25,10 @@ export default class Results extends React.Component {
 		} );
 
 		let matchList = Object.keys( matchesByLength ).map( ( length ) => {
+			if ( this.props.lengths.length !== 0 && this.props.lengths.indexOf( length ) === -1 ) {
+				return null;
+			}
+
 			const theseMatches = matchesByLength[ length ];
 			theseMatches.sort();
 

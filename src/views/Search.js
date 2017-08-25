@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 import SearchForm from '../components/SearchForm';
 import Results from '../components/Results';
+import LengthFilter from '../components/LengthFilter';
 
 import wordSearch from '../util/WordSearch';
 
@@ -64,11 +65,22 @@ export default class Main extends React.Component {
 			}}/>
 		);
 
+		let selectedLengths = [];
+
+		const handleLengthFilter = ( newSelection ) => {
+			selectedLengths = newSelection;
+		};
+
 		return (
 			<div className="container home">
 				{searchForm}
+				<LengthFilter
+					maxLength={this.state.scramble.length || 10}
+					onChange={handleLengthFilter}
+				/>
 				<Results
 					matches={this.state.matches}
+					lengths={selectedLengths}
 				/>
 			</div>
 		);
