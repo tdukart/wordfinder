@@ -29,8 +29,13 @@ export default class SearchForm extends React.Component {
 	}
 
 	render() {
+		let handleSubmit = this.handleSubmit.bind( this );
+		let handleChange = this.handleChange.bind( this );
+
 		return (
-			<Form onSubmit={this.handleSubmit.bind( this )}>
+			<Form
+				onSubmit={handleSubmit}
+				className="search-results">
 				<FormGroup>
 					<ControlLabel>
 						Scramble
@@ -40,7 +45,7 @@ export default class SearchForm extends React.Component {
 							type="text"
 							value={this.state.scramble}
 							placeholder="Enter scramble"
-							onChange={this.handleChange.bind( this )}
+							onChange={handleChange}
 							autoComplete="off"
 						/>
 						<InputGroup.Button>
