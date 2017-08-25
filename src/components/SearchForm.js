@@ -33,29 +33,29 @@ export default class SearchForm extends React.Component {
 		let handleChange = this.handleChange.bind( this );
 
 		return (
-			<Form
-				onSubmit={handleSubmit}
-				className="search-results">
-				<FormGroup>
-					<ControlLabel>
-						Scramble
-					</ControlLabel>
-					<InputGroup>
-						<FormControl
-							type="text"
-							value={this.state.scramble}
-							placeholder="Enter scramble"
-							onChange={handleChange}
-							autoComplete="off"
-						/>
-						<InputGroup.Button>
-							<Button type="submit">
-								Search
-							</Button>
-						</InputGroup.Button>
-					</InputGroup>
-				</FormGroup>
-			</Form>
+			<div className="container search-form">
+				<Form onSubmit={handleSubmit}>
+					<FormGroup>
+						<ControlLabel>
+							Scramble
+						</ControlLabel>
+						<InputGroup>
+							<FormControl
+								type="text"
+								value={this.state.scramble}
+								placeholder="Enter scramble"
+								onChange={handleChange}
+								autoComplete="off"
+							/>
+							<InputGroup.Button>
+								<Button type="submit">
+									Search
+								</Button>
+							</InputGroup.Button>
+						</InputGroup>
+					</FormGroup>
+				</Form>
+			</div>
 		);
 	}
 }
