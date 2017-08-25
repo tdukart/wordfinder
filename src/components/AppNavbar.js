@@ -21,6 +21,16 @@ export default class AppNavbar extends React.Component {
 								Home
 							</NavItem>
 						</LinkContainer>
+						<LinkContainer to="/search">
+							<NavItem eventKey={3}>
+								Search
+							</NavItem>
+						</LinkContainer>
+						<LinkContainer exact to="/about">
+							<NavItem eventKey={2}>
+								About
+							</NavItem>
+						</LinkContainer>
 					</Nav>
 				</Navbar.Collapse>
 			</Navbar>

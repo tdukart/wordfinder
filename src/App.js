@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 
 import Main from './components/Main';
+import About from './components/About';
 import AppNavbar from './components/AppNavbar';
 
 import 'bootswatch/yeti/bootstrap.css';
@@ -18,6 +19,7 @@ class App extends React.Component {
 				<div>
 					<AppNavbar/>
 					<Route exact path="/" component={Main}/>
+					<Route path="/about" component={About}/>
 					<Route path="/search/:scramble" component={Main}/>
 				</div>
 			</Router>
