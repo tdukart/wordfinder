@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import SearchForm from './SearchForm';
-import Results from './Results';
+import SearchForm from '../components/SearchForm';
+import Results from '../components/Results';
 
 import wordSearch from '../util/WordSearch';
 

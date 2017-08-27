@@ -5,8 +5,8 @@ import {
 	Route
 } from 'react-router-dom';
 
-import Main from './components/Main';
-import About from './components/About';
+import Search from './views/Search';
+import About from './views/About';
 import AppNavbar from './components/AppNavbar';
 
 import 'bootswatch/yeti/bootstrap.css';
@@ -18,9 +18,9 @@ class App extends React.Component {
 			<Router>
 				<div>
 					<AppNavbar/>
-					<Route exact path="/" component={Main}/>
+					<Route exact path="/" component={Search}/>
 					<Route path="/about" component={About}/>
-					<Route path="/search/:scramble" component={Main}/>
+					<Route path="/search/:scramble" component={Search}/>
 				</div>
 			</Router>
 		)
