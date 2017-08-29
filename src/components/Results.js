@@ -8,6 +8,7 @@ export default class Results extends React.Component {
 		return {
 			matches: PropTypes.array.isRequired,
 			selectedLengths: PropTypes.array.isRequired,
+			searching: PropTypes.bool.isRequired,
 		};
 	}
 
@@ -18,6 +19,14 @@ export default class Results extends React.Component {
 	// }
 
 	render() {
+		if ( this.props.searching ) {
+			return (
+				<div>
+					Searching...
+				</div>
+			);
+		}
+		
 		let matchesByLength = {};
 		this.props.matches.forEach( ( match ) => {
 			matchesByLength[ match.length ] = matchesByLength[ match.length ] || [];

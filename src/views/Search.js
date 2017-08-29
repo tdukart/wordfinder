@@ -23,6 +23,7 @@ export default class Main extends React.Component {
 			scramble: initialScramble,
 			matches: [],
 			selectedLengths: [],
+			searching: false,
 		};
 
 		if ( initialScramble ) {
@@ -32,7 +33,10 @@ export default class Main extends React.Component {
 
 	componentWillReceiveProps( nextProps ) {
 		if ( nextProps.match.params.scramble !== this.state.scramble ) {
-			this.setState( { scramble: nextProps.match.params.scramble } );
+			this.setState( {
+				searching: true,
+				scramble: nextProps.match.params.scramble
+			} );
 		}
 	}
 
@@ -46,6 +50,7 @@ export default class Main extends React.Component {
 		let search = wordSearch( scramble );
 		search.then( ( matches ) => {
 			this.setState( {
+				searching: false,
 				matches
 			} );
 		} );
