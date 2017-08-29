@@ -1,4 +1,3 @@
-import wordList from 'word-list-json';
 import Promise from 'bluebird';
 
 let disassembleString = ( string ) => {
@@ -13,14 +12,16 @@ let disassembleString = ( string ) => {
 	return components;
 };
 
-let preprocessPromise = new Promise( ( resolve, reject ) => {
-	let processed = wordList.map( ( word ) => ([ word, disassembleString( word ) ]) );
-	resolve( processed );
+let processWordList = new Promise( ( resolve, reject ) => {
+	import('word-list-json').then( ( wordList ) => {
+		let processed = wordList.map( ( word ) => ([ word, disassembleString( word ) ]) );
+		resolve( processed );
+	} );
 } );
 
 export default ( needle = '' ) => {
 	return new Promise( ( resolve, reject ) => {
-		preprocessPromise.then( ( preprocessedWordList ) => {
+		processWordList.then( ( preprocessedWordList ) => {
 			let disassembledNeedle = disassembleString( needle );
 
 			let matches = preprocessedWordList.filter( ( haystackItem ) => {
