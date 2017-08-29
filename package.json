@@ -2,6 +2,7 @@
   "name": "wordfinder",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://tdukart.github.io/wordfinder",
   "dependencies": {
     "bluebird": "^3.5.0",
     "bootstrap": "^3.3.7",
