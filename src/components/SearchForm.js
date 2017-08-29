@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, FormGroup, ControlLabel, FormControl, Button, InputGroup } from 'react-bootstrap';
 
-
 export default class SearchForm extends React.Component {
 	constructor( props ) {
 		super( props );
