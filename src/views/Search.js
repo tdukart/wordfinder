@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import { Grid, Row } from 'react-bootstrap';
 
 import SearchForm from '../components/SearchForm';
 import Results from '../components/Results';
@@ -21,6 +22,7 @@ export default class Main extends React.Component {
 		this.state = {
 			scramble: initialScramble,
 			matches: [],
+			selectedLengths: [],
 		};
 
 		if ( initialScramble ) {
@@ -65,24 +67,28 @@ export default class Main extends React.Component {
 			}}/>
 		);
 
-		let selectedLengths = [];
-
-		const handleLengthFilter = ( newSelection ) => {
-			selectedLengths = newSelection;
+		const handleLengthFilter = ( selectedLengths ) => {
+			this.setState( { selectedLengths } );
 		};
 
 		return (
-			<div className="container home">
-				{searchForm}
-				<LengthFilter
-					maxLength={this.state.scramble.length || 10}
-					onChange={handleLengthFilter}
-				/>
-				<Results
-					matches={this.state.matches}
-					lengths={selectedLengths}
-				/>
-			</div>
+			<Grid className="search-screen">
+				<Row>
+					{searchForm}
+				</Row>
+				<Row>
+					<LengthFilter
+						maxLength={this.state.scramble.length || 10}
+						onChange={handleLengthFilter}
+						{...this.state}
+					/>
+				</Row>
+				<Row>
+					<Results
+						{...this.state}
+					/>
+				</Row>
+			</Grid>
 		);
 	}
 }

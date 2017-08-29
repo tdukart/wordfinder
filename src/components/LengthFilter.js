@@ -1,20 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, ButtonGroup } from 'react-bootstrap';
+import { Button, ButtonGroup, Glyphicon } from 'react-bootstrap';
 
 export default class LengthFilter extends React.Component {
-	constructor( props ) {
-		super( props );
-
-		this.state = {
-			selectedLengths: []
-		};
-	}
-
 	static get defaultProps() {
 		return {
 			minLength: 2,
 			maxLength: 8,
+			selectedLengths: []
 		}
 	}
 
@@ -22,18 +15,15 @@ export default class LengthFilter extends React.Component {
 		return {
 			minLength: PropTypes.number,
 			maxLength: PropTypes.number,
+			selectedLengths: PropTypes.array,
 			onChange: PropTypes.func.isRequired,
 		}
-	}
-
-	componentDidUpdate() {
-		this.props.onChange( this.state.selectedLengths );
 	}
 
 	render() {
 		const buttons = [];
 		const handleButtonClick = ( length ) => {
-			let newState = this.state.selectedLengths.slice( 0 );
+			let newState = this.props.selectedLengths.slice( 0 );
 			if ( newState.indexOf( length ) > -1 ) {
 				newState = newState.filter( ( lengthUnderTest ) => (length !== lengthUnderTest) );
 			} else {
@@ -41,14 +31,18 @@ export default class LengthFilter extends React.Component {
 				newState.sort();
 			}
 
-			this.setState( { selectedLengths: newState } );
+			this.props.onChange( newState );
+		};
+
+		const clearFilter = () => {
+			this.props.onChange( [] );
 		};
 
 		for ( let i = this.props.minLength; i <= this.props.maxLength; i++ ) {
 			buttons.push(
 				<Button
 					key={`length-${i}`}
-					active={this.state.selectedLengths.indexOf( i ) > -1}
+					active={this.props.selectedLengths.indexOf( i ) > -1}
 					onClick={handleButtonClick.bind( this, i )}
 				>
 					{i}
@@ -60,6 +54,9 @@ export default class LengthFilter extends React.Component {
 			<div className="container length-filter">
 				<ButtonGroup>
 					{buttons}
+					<Button onClick={clearFilter}>
+						<Glyphicon glyph="remove"/>
+					</Button>
 				</ButtonGroup>
 			</div>
 		)

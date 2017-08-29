@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Panel, Grid, Row, Col } from 'react-bootstrap';
+import { Panel, Col } from 'react-bootstrap';
 
 export default class Results extends React.Component {
 	static get propTypes() {
 		return {
 			matches: PropTypes.array.isRequired,
-			lengths: PropTypes.array.isRequired,
+			selectedLengths: PropTypes.array.isRequired,
 		};
 	}
 
@@ -25,7 +25,7 @@ export default class Results extends React.Component {
 		} );
 
 		let matchList = Object.keys( matchesByLength ).map( ( length ) => {
-			if ( this.props.lengths.length !== 0 && this.props.lengths.indexOf( length ) === -1 ) {
+			if ( this.props.selectedLengths.length !== 0 && this.props.selectedLengths.indexOf( Number.parseInt( length, 10 ) ) === -1 ) {
 				return null;
 			}
 
@@ -50,11 +50,9 @@ export default class Results extends React.Component {
 
 
 		return (
-			<Grid className="results">
-				<Row>
-					{matchList}
-				</Row>
-			</Grid>
+			<div className="results">
+				{matchList}
+			</div>
 		);
 	}
 }
