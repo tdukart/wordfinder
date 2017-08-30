@@ -2,7 +2,7 @@
   "name": "wordfinder",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://tdukart.github.io/wordfinder",
+  "homepage": "https://tdukart.github.io/wordfinder/",
   "dependencies": {
     "bluebird": "^3.5.0",
     "bootstrap": "^3.3.7",
@@ -20,12 +20,15 @@
     "word-list-json": "^0.2.0"
   },
   "devDependencies": {
+    "gh-pages": "^1.0.0",
     "react-scripts": "1.0.11"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }
