@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, FormGroup, ControlLabel, FormControl, Button, InputGroup } from 'react-bootstrap';
+import { Form, FormGroup, ControlLabel, FormControl, Button, InputGroup, Glyphicon } from 'react-bootstrap';
 
 export default class SearchForm extends React.Component {
 	constructor( props ) {
@@ -27,6 +27,10 @@ export default class SearchForm extends React.Component {
 		this.props.onSubmit( this.state.scramble );
 	}
 
+	clear() {
+		this.setState( { scramble: '' } );
+	}
+
 	render() {
 		let handleSubmit = this.handleSubmit.bind( this );
 		let handleChange = this.handleChange.bind( this );
@@ -47,8 +51,11 @@ export default class SearchForm extends React.Component {
 								autoComplete="off"
 							/>
 							<InputGroup.Button>
-								<Button type="submit">
-									Search
+								<Button>
+									<Glyphicon glyph="remove-circle" onClick={this.clear.bind( this )}/>
+								</Button>
+								<Button bsStyle="primary" type="submit">
+									<Glyphicon glyph="search"/>
 								</Button>
 							</InputGroup.Button>
 						</InputGroup>
