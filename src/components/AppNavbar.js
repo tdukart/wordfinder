@@ -9,8 +9,7 @@ export default class AppNavbar extends React.Component {
 			<Navbar>
 				<Navbar.Header>
 					<Navbar.Brand>
-						<Link to="/">Word Finder</Link>
-						{/*WordFinder*/}
+						<Link to="/">WordFinder</Link>
 					</Navbar.Brand>
 					<Navbar.Toggle/>
 				</Navbar.Header>
