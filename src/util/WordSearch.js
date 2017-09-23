@@ -13,9 +13,8 @@ let disassembleString = ( string ) => {
 };
 
 let processWordList = new Promise( ( resolve, reject ) => {
-	import('word-list-json').then( ( wordList ) => {
-		let processed = wordList.map( ( word ) => ([ word, disassembleString( word ) ]) );
-		resolve( processed );
+	import('deconstructed-word-list/dist/up-to-10').then( ( wordList ) => {
+		resolve( wordList );
 	} );
 } );
 
