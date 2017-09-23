@@ -13,6 +13,8 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
 const publicPath = paths.servedPath;
@@ -229,6 +231,26 @@ module.exports = {
     ],
   },
   plugins: [
+    new FaviconsWebpackPlugin( {
+        // Your source logo
+        logo: path.resolve(paths.appSrc, 'icon.svg'),
+        // The prefix for all image files (might be a folder or a name)
+        prefix: 'icons-[hash]/',
+        // Emit all stats of the generated icons
+        emitStats: false,
+        // The name of the json containing all favicon information
+        statsFilename: 'iconstats-[hash].json',
+        // Generate a cache file with control hashes and
+        // don't rebuild the favicons until those hashes change
+        persistentCache: true,
+        // Inject the html into the html-webpack-plugin
+        inject: true,
+        // favicon background color (see https://github.com/haydenbleasel/favicons#usage)
+        background: '#c3c3c3',
+        // favicon app title (see https://github.com/haydenbleasel/favicons#usage)
+        title: 'WordFinder',
+    } ),
+
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
