@@ -1838,6 +1838,10 @@ decamelize@^1.0.0, decamelize@^1.1.1, decamelize@^1.1.2:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
 
+deconstructed-word-list@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/deconstructed-word-list/-/deconstructed-word-list-0.1.4.tgz#50d292398d128e9fc8d1574d564cb9bd7ff633e8"
+
 deep-equal@*, deep-equal@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.0.1.tgz#f5d260292b660e084eff4cdbc9f08ad3247448b5"
@@ -6835,10 +6839,6 @@ winston@0.8.x:
     isstream "0.1.x"
     pkginfo "0.3.x"
     stack-trace "0.0.x"
-
-word-list-json@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/word-list-json/-/word-list-json-0.2.0.tgz#b8d2c934e9129bffb0e48f64af71020691f78a1f"
 
 wordwrap@0.0.2:
   version "0.0.2"
