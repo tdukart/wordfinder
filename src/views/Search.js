@@ -83,7 +83,7 @@ export default class Main extends React.Component {
 				</Row>
 				<Row>
 					<LengthFilter
-						maxLength={this.state.scramble.length || 8}
+						maxLength={this.state.scramble.length || 10}
 						onChange={handleLengthFilter}
 						{...this.state}
 					/>
