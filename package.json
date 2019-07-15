@@ -14,7 +14,7 @@
     "bluebird": "^3.5.0",
     "bootstrap": "^3.3.7",
     "bootswatch": "^3.3.7",
-    "case-sensitive-paths-webpack-plugin": "2.1.1",
+    "case-sensitive-paths-webpack-plugin": "2.2.0",
     "chalk": "1.1.3",
     "css-loader": "0.28.4",
     "dotenv": "8.0.0",
