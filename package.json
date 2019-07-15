@@ -10,7 +10,7 @@
     "babel-jest": "20.0.3",
     "babel-loader": "7.1.1",
     "babel-preset-react-app": "^3.0.2",
-    "babel-runtime": "6.23.0",
+    "babel-runtime": "6.26.0",
     "bluebird": "^3.5.0",
     "bootstrap": "^3.3.7",
     "bootswatch": "^3.3.7",
