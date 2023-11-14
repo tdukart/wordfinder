@@ -16,7 +16,7 @@
     "bootswatch": "^3.3.7",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
     "chalk": "1.1.3",
-    "css-loader": "0.28.4",
+    "css-loader": "6.8.1",
     "dotenv": "8.0.0",
     "eslint": "4.18.2",
     "eslint-config-react-app": "^2.0.0",
